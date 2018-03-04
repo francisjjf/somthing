@@ -2,6 +2,14 @@ From centos:7.2.1511
 
 MAINTAINER jiangjianfei "jiangjianfei@zte.com.cn"
 
+#update resolv.conf if need
+#RUN echo -e "nameserver 8:8:8:8\nnameserver 8:8:4:4" > /etc/resolv.conf
+
+#update proxy if need
+#ENV http_proxy http://proxyhk.zte.com.cn
+#ENV https_proxy https://proxyhk.zte.com.cn
+#RUN echo -e "export http_proxy=http://proxyhk.zte.com.cn\nexport https_proxy=https://proxyhk.zte.com.cn" > /etc/profile.d/proxy.sh
+
 RUN yum -y install gcc automake autoconf libtool make gcc-c++ git wget
 
 RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.tar.gz"
@@ -42,4 +50,3 @@ RUN gem sources -r https://rubygems.org/ -a https://gems.ruby-china.org/
 RUN gem install logstash-core -v 5.4.0
 RUN chmod -R 777 /usr/local/rbenv
 
-#add resolv.conf and proxy manually if needed.
